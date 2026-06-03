@@ -5,6 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nossa História</title>
+  
+  <!-- Ícone de coração na aba do navegador -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+  
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&display=swap"
     rel="stylesheet" />
@@ -128,7 +132,6 @@
       pointer-events: none;
     }
 
-    /* MELHORIA: Animação de flutuação suave para as pétalas */
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-30px) rotate(5deg); }
@@ -139,7 +142,6 @@
       right: -80px;
       width: 450px;
       height: 450px;
-      /* MELHORIA: Aplicando a animação */
       animation: float 8s ease-in-out infinite;
     }
 
@@ -148,7 +150,6 @@
       left: -100px;
       width: 500px;
       height: 500px;
-      /* MELHORIA: Aplicando a animação com atraso para dessincronizar */
       animation: float 10s ease-in-out infinite;
       animation-delay: -4s;
     }
@@ -313,7 +314,7 @@
     .tl-line {
       background: var(--rose-lt);
       position: relative;
-      height: 100%; /* Para conectar as linhas */
+      height: 100%;
     }
 
     .tl-dot {
@@ -414,7 +415,7 @@
       max-width: 90vw;
       max-height: 90vh;
       border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* MELHORIA: Sombra na imagem em destaque */
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     #lightbox-close {
@@ -428,7 +429,6 @@
       z-index: 202;
     }
 
-    /* MELHORIA: Estilos para as setas do Lightbox */
     .lightbox-nav {
       position: absolute;
       top: 50%;
@@ -502,7 +502,6 @@
     footer span { color: var(--rose); }
 
     /* ── MUSIC BUTTON ── */
-    /* MELHORIA: Estilo do botão de música flutuante */
     #music-btn {
       position: fixed;
       bottom: 20px;
@@ -542,7 +541,6 @@
       }
       .letter-wrap { padding: 2rem 1.5rem; }
       
-      /* Ajuste setas mobile */
       .lightbox-nav { font-size: 2rem; }
       #lightbox-prev { left: 0; }
       #lightbox-next { right: 0; }
@@ -559,7 +557,6 @@
     <a href="#carta">Carta</a>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <div class="petal petal-1"></div>
     <div class="petal petal-2"></div>
@@ -592,7 +589,6 @@
     </div>
   </section>
 
-  <!-- HISTORIA -->
   <section id="historia">
     <div class="section-inner">
       <p class="section-label">capítulo a capítulo</p>
@@ -638,57 +634,51 @@
     </div>
   </section>
 
-  <!-- GALERIA -->
   <section id="galeria">
     <div class="section-inner">
       <p class="section-label">memórias em fotos</p>
       <h2 class="section-title">Nossa Galeria</h2>
 
       <div class="gallery-grid">
-        <!-- MELHORIA: Atributo loading="lazy" adicionado para performance -->
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/EU.jpg.jpeg" loading="lazy" alt="Foto Emanoel" />
+          <img src="Fotos/foto1.jpg" loading="lazy" alt="Foto Emanoel" />
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (1).jpeg" alt="Momento especial 1" loading="lazy" />
+          <img src="Fotos/foto2.jpg" alt="Momento especial 1" loading="lazy" />
           <div class="gallery-caption">Meu momento favorito</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (2).jpeg" alt="Momento especial 2" loading="lazy" />
+          <img src="Fotos/foto3.jpg" alt="Momento especial 2" loading="lazy" />
           <div class="gallery-caption"></div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (3).jpeg" alt="Momento especial 3" loading="lazy" />
+          <img src="Fotos/foto4.jpg" alt="Momento especial 3" loading="lazy" />
           <div class="gallery-caption"></div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (4).jpeg" alt="Momento especial 4" loading="lazy" />
+          <img src="Fotos/foto5.jpg" alt="Momento especial 4" loading="lazy" />
           <div class="gallery-caption">N</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57.jpeg" alt="Momento especial 5" loading="lazy" />
+          <img src="Fotos/foto6.jpg" alt="Momento especial 5" loading="lazy" />
           <div class="gallery-caption">Sempre juntos</div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- LIGHTBOX -->
   <div id="lightbox">
     <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <!-- MELHORIA: Setas de navegação adicionadas -->
     <span id="lightbox-prev" class="lightbox-nav" onclick="changeImage(-1, event)">&#10094;</span>
     <img id="lightbox-img" src="" alt="" />
     <span id="lightbox-next" class="lightbox-nav" onclick="changeImage(1, event)">&#10095;</span>
   </div>
 
-  <!-- CARTA -->
   <section id="carta">
     <div class="section-inner">
       <p class="section-label">do fundo do coração</p>
@@ -712,13 +702,11 @@
     </div>
   </section>
 
-  <!-- MELHORIA: Elemento de áudio para música de fundo. Basta colocar sua música na pasta do projeto e atualizar o 'src' -->
   <audio id="bg-music" loop>
-    <source src="sua-musica.mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
 
-  <!-- MELHORIA: Botão para tocar/pausar a música -->
   <button id="music-btn" onclick="toggleMusic()" title="Tocar música">
     🎵
   </button>
@@ -728,7 +716,6 @@
   </footer>
 
   <script>
-    // MELHORIA: O mês no JS começa em 0. Para Junho, o mês é 5 (0 = Jan, 1 = Fev, etc.)
     const START_DATE = new Date(2022, 5, 12, 0, 0, 0); 
 
     function updateCounter() {
@@ -747,10 +734,8 @@
     updateCounter();
     setInterval(updateCounter, 1000);
 
-    // ── ANO NO FOOTER ──
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // ── SCROLL REVEAL ──
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -762,11 +747,9 @@
 
     document.querySelectorAll('.timeline-item, .gallery-item').forEach(el => observer.observe(el));
 
-    // ── LIGHTBOX (AGORA COM NAVEGAÇÃO) ──
     let currentImageIndex = 0;
     let galleryItems = [];
 
-    // Captura todos os itens da galeria ao carregar a página
     document.addEventListener("DOMContentLoaded", () => {
       galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
     });
@@ -775,7 +758,6 @@
       const img = item.querySelector('img');
       if (!img) return;
       
-      // MELHORIA: Descobre qual é a imagem atual clicada para permitir avançar/voltar
       currentImageIndex = galleryItems.indexOf(item);
       
       document.getElementById('lightbox-img').src = img.src;
@@ -786,13 +768,11 @@
       document.getElementById('lightbox').classList.remove('open');
     }
 
-    // MELHORIA: Função para avançar e voltar imagem (+1 ou -1)
     function changeImage(direction, event) {
-      if(event) event.stopPropagation(); // Evita que o clique feche o lightbox
+      if(event) event.stopPropagation(); 
       
       currentImageIndex += direction;
       
-      // Lógica de loop infinito para as imagens
       if(currentImageIndex >= galleryItems.length) currentImageIndex = 0;
       if(currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
       
@@ -801,72 +781,29 @@
     }
 
     document.getElementById('lightbox').addEventListener('click', function (e) {
-      // Fecha o lightbox se clicar no fundo preto (fora da imagem ou setas)
       if (e.target === this) closeLightbox();
     });
 
-    // MELHORIA: Adicionado suporte para as setas do teclado (Esquerda / Direita)
     document.addEventListener('keydown', e => { 
       if (e.key === 'Escape') closeLightbox(); 
       if (e.key === 'ArrowRight' && document.getElementById('lightbox').classList.contains('open')) changeImage(1);
       if (e.key === 'ArrowLeft' && document.getElementById('lightbox').classList.contains('open')) changeImage(-1);
     });
 
-    // ── MÚSICA DE FUNDO ──
-    // MELHORIA: Função para controlar a música flutuante
     function toggleMusic() {
       const audio = document.getElementById('bg-music');
       const btn = document.getElementById('music-btn');
       
       if (audio.paused) {
         audio.play();
-        btn.innerHTML = '⏸️'; // Troca o ícone para pause
+        btn.innerHTML = '⏸️';
         btn.title = "Pausar música";
       } else {
         audio.pause();
-        btn.innerHTML = '🎵'; // Troca o ícone para play
+        btn.innerHTML = '🎵';
         btn.title = "Tocar música";
       }
     }
   </script>
-
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 </html>
