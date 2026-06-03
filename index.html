@@ -57,7 +57,7 @@
     }
 
     body::after {
-      content: '❤    🌸   eu te amo   🌸    minha esposa   🌸    para sempre ❤';
+      content: '❤   🌸   eu te amo   🌸   minha esposa   🌸   para sempre ❤';
       position: fixed;
       left: 50%;
       top: 18%;
@@ -128,11 +128,19 @@
       pointer-events: none;
     }
 
+    /* MELHORIA: Animação de flutuação suave para as pétalas */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(5deg); }
+    }
+
     .petal-1 {
       top: -80px;
       right: -80px;
       width: 450px;
       height: 450px;
+      /* MELHORIA: Aplicando a animação */
+      animation: float 8s ease-in-out infinite;
     }
 
     .petal-2 {
@@ -140,6 +148,9 @@
       left: -100px;
       width: 500px;
       height: 500px;
+      /* MELHORIA: Aplicando a animação com atraso para dessincronizar */
+      animation: float 10s ease-in-out infinite;
+      animation-delay: -4s;
     }
 
     .hero-eyebrow {
@@ -230,66 +241,18 @@
       letter-spacing: 0.05em;
     }
 
-    #hero::before {
-      content: 'eu te amo ❤';
-      left: 1rem;
-      transform: rotate(-8deg);
-    }
-
-    #hero::after {
-      content: 'minha esposa 🌸';
-      right: 1rem;
-      transform: rotate(8deg);
-    }
-
-    #historia::before {
-      content: 'para sempre';
-      left: 1rem;
-      transform: rotate(-6deg);
-      top: 2rem;
-    }
-
-    #historia::after {
-      content: 'nosso lugar';
-      right: 1rem;
-      transform: rotate(6deg);
-      top: 2rem;
-    }
-
-    #galeria::before {
-      content: 'meus melhores momentos';
-      left: 1rem;
-      transform: rotate(-6deg);
-      top: 2rem;
-    }
-
-    #galeria::after {
-      content: 'você é meu tudo';
-      right: 1rem;
-      transform: rotate(6deg);
-      top: 2rem;
-    }
-
-    #carta::before {
-      content: 'minha vida';
-      left: 1rem;
-      transform: rotate(-6deg);
-      top: 1.8rem;
-    }
-
-    #carta::after {
-      content: 'com amor';
-      right: 1rem;
-      transform: rotate(6deg);
-      top: 1.8rem;
-    }
+    #hero::before { content: 'eu te amo ❤'; left: 1rem; transform: rotate(-8deg); }
+    #hero::after { content: 'minha esposa 🌸'; right: 1rem; transform: rotate(8deg); }
+    #historia::before { content: 'para sempre'; left: 1rem; transform: rotate(-6deg); top: 2rem; }
+    #historia::after { content: 'nosso lugar'; right: 1rem; transform: rotate(6deg); top: 2rem; }
+    #galeria::before { content: 'meus melhores momentos'; left: 1rem; transform: rotate(-6deg); top: 2rem; }
+    #galeria::after { content: 'você é meu tudo'; right: 1rem; transform: rotate(6deg); top: 2rem; }
+    #carta::before { content: 'minha vida'; left: 1rem; transform: rotate(-6deg); top: 1.8rem; }
+    #carta::after { content: 'com amor'; right: 1rem; transform: rotate(6deg); top: 1.8rem; }
 
     @media (max-width: 900px) {
-
       section::before,
-      section::after {
-        display: none;
-      }
+      section::after { display: none; }
     }
 
     .section-inner {
@@ -315,9 +278,7 @@
     }
 
     /* ── LINHA DO TEMPO ── */
-    #historia {
-      background: #fff;
-    }
+    #historia { background: #fff; }
 
     .timeline {
       display: flex;
@@ -352,6 +313,7 @@
     .tl-line {
       background: var(--rose-lt);
       position: relative;
+      height: 100%; /* Para conectar as linhas */
     }
 
     .tl-dot {
@@ -382,9 +344,7 @@
     }
 
     /* ── GALERIA ── */
-    #galeria {
-      background: var(--warm);
-    }
+    #galeria { background: var(--warm); }
 
     .gallery-grid {
       display: grid;
@@ -437,25 +397,6 @@
       opacity: 1;
     }
 
-    /* Placeholder para fotos */
-    .photo-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--rose);
-      font-size: 0.75rem;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .photo-placeholder svg {
-      opacity: 0.5;
-    }
-
     /* ── LIGHTBOX ── */
     #lightbox {
       display: none;
@@ -467,14 +408,13 @@
       justify-content: center;
     }
 
-    #lightbox.open {
-      display: flex;
-    }
+    #lightbox.open { display: flex; }
 
     #lightbox img {
       max-width: 90vw;
       max-height: 90vh;
       border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* MELHORIA: Sombra na imagem em destaque */
     }
 
     #lightbox-close {
@@ -482,15 +422,31 @@
       top: 1.5rem;
       right: 1.5rem;
       color: white;
-      font-size: 2rem;
+      font-size: 2.5rem;
       cursor: pointer;
       line-height: 1;
+      z-index: 202;
     }
 
-    /* ── CARTA ── */
-    #carta {
-      background: #fff;
+    /* MELHORIA: Estilos para as setas do Lightbox */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 3rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 1rem;
+      z-index: 201;
+      transition: color 0.3s;
     }
+    .lightbox-nav:hover { color: var(--rose); }
+    #lightbox-prev { left: 2vw; }
+    #lightbox-next { right: 2vw; }
+
+    /* ── CARTA ── */
+    #carta { background: #fff; }
 
     .letter-wrap {
       max-width: 600px;
@@ -543,21 +499,39 @@
       border-top: 1px solid rgba(201, 123, 132, 0.15);
     }
 
-    footer span {
+    footer span { color: var(--rose); }
+
+    /* ── MUSIC BUTTON ── */
+    /* MELHORIA: Estilo do botão de música flutuante */
+    #music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 150;
+      background: rgba(249, 243, 239, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(201, 123, 132, 0.3);
       color: var(--rose);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #music-btn:hover {
+      transform: scale(1.1);
+      background: var(--rose-lt);
     }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ── RESPONSIVE ── */
@@ -566,10 +540,12 @@
         grid-template-columns: 70px 1px 1fr;
         gap: 0 1rem;
       }
-
-      .letter-wrap {
-        padding: 2rem 1.5rem;
-      }
+      .letter-wrap { padding: 2rem 1.5rem; }
+      
+      /* Ajuste setas mobile */
+      .lightbox-nav { font-size: 2rem; }
+      #lightbox-prev { left: 0; }
+      #lightbox-next { right: 0; }
     }
   </style>
 </head>
@@ -623,13 +599,9 @@
       <h2 class="section-title">Nossa História</h2>
 
       <div class="timeline">
-
-      
         <div class="timeline-item">
           <div class="tl-date">Junho de 2022</div>
-          <div class="tl-line">
-            <div class="tl-dot"></div>
-          </div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
           <div class="tl-content">
             <h3>O primeiro encontro</h3>
             <p>Aquele dia que mudou tudo. Ainda me lembro do seu sorriso quando nos vimos pela primeira vez.</p>
@@ -638,9 +610,7 @@
 
         <div class="timeline-item">
           <div class="tl-date">2022</div>
-          <div class="tl-line">
-            <div class="tl-dot"></div>
-          </div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
           <div class="tl-content">
             <h3>Nosso primeiro beijo</h3>
             <p>O momento que eu sabia, com toda certeza, que queria ficar ao seu lado.</p>
@@ -649,9 +619,7 @@
 
         <div class="timeline-item">
           <div class="tl-date">Dez 2024</div>
-          <div class="tl-line">
-            <div class="tl-dot"></div>
-          </div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
           <div class="tl-content">
             <h3>Nossa primeira viagem</h3>
             <p>Descobrimos juntos que o mundo fica mais bonito quando a gente está do lado de quem ama.</p>
@@ -660,15 +628,12 @@
 
         <div class="timeline-item">
           <div class="tl-date">Hoje</div>
-          <div class="tl-line">
-            <div class="tl-dot"></div>
-          </div>
+          <div class="tl-line"><div class="tl-dot"></div></div>
           <div class="tl-content">
             <h3>Continuando a história</h3>
             <p>Cada dia é um novo capítulo, e eu quero escrever todos eles com você.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -680,47 +645,47 @@
       <h2 class="section-title">Nossa Galeria</h2>
 
       <div class="gallery-grid">
-
+        <!-- MELHORIA: Atributo loading="lazy" adicionado para performance -->
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/EU.jpg.jpeg"  />
+          <img src="Fotos/EU.jpg.jpeg" loading="lazy" alt="Foto Emanoel" />
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (1).jpeg" alt="Momento especial 1" />
+          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (1).jpeg" alt="Momento especial 1" loading="lazy" />
           <div class="gallery-caption">Meu momento favorito</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (2).jpeg" alt="Momento especial 2" />
+          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (2).jpeg" alt="Momento especial 2" loading="lazy" />
           <div class="gallery-caption"></div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (3).jpeg" alt="Momento especial 3" />
+          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (3).jpeg" alt="Momento especial 3" loading="lazy" />
           <div class="gallery-caption"></div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (4).jpeg" alt="Momento especial 4" />
+          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57 (4).jpeg" alt="Momento especial 4" loading="lazy" />
           <div class="gallery-caption">N</div>
         </div>
 
         <div class="gallery-item" onclick="openLightbox(this)">
-          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57.jpeg" alt="Momento especial 5" />
+          <img src="Fotos/WhatsApp Image 2026-03-16 at 13.59.57.jpeg" alt="Momento especial 5" loading="lazy" />
           <div class="gallery-caption">Sempre juntos</div>
         </div>
 
       </div>
-      <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--muted);">
-        
-      </p>
     </div>
   </section>
 
   <!-- LIGHTBOX -->
   <div id="lightbox">
     <span id="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <!-- MELHORIA: Setas de navegação adicionadas -->
+    <span id="lightbox-prev" class="lightbox-nav" onclick="changeImage(-1, event)">&#10094;</span>
     <img id="lightbox-img" src="" alt="" />
+    <span id="lightbox-next" class="lightbox-nav" onclick="changeImage(1, event)">&#10095;</span>
   </div>
 
   <!-- CARTA -->
@@ -731,7 +696,6 @@
 
       <div class="letter-wrap">
         <p class="letter-text">
-        
           Meu amor,<br><br>
           Às vezes fico pensando em como a vida seria diferente se eu não tivesse te encontrado. Mais cinza, com
           certeza. Você trouxe cor pra tudo — pro meu dia, pros meus planos, pro jeito que eu vejo o futuro.<br><br>
@@ -742,20 +706,30 @@
         </p>
         <p class="letter-sig">
           Com amor, <em>Emanoel Rodrigues Soares</em> &hearts;
-        
         </p>
       </div>
 
     </div>
   </section>
 
+  <!-- MELHORIA: Elemento de áudio para música de fundo. Basta colocar sua música na pasta do projeto e atualizar o 'src' -->
+  <audio id="bg-music" loop>
+    <source src="sua-musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <!-- MELHORIA: Botão para tocar/pausar a música -->
+  <button id="music-btn" onclick="toggleMusic()" title="Tocar música">
+    🎵
+  </button>
+
   <footer>
     Feito com <span>&hearts;</span> especialmente para você &mdash; <span id="current-year"></span>
   </footer>
 
   <script>
- 
-    const START_DATE = new Date(2022, 6, 12, 0, 0, 0);
+    // MELHORIA: O mês no JS começa em 0. Para Junho, o mês é 5 (0 = Jan, 1 = Fev, etc.)
+    const START_DATE = new Date(2022, 5, 12, 0, 0, 0); 
 
     function updateCounter() {
       const now = new Date();
@@ -788,22 +762,111 @@
 
     document.querySelectorAll('.timeline-item, .gallery-item').forEach(el => observer.observe(el));
 
-    // ── LIGHTBOX ──
+    // ── LIGHTBOX (AGORA COM NAVEGAÇÃO) ──
+    let currentImageIndex = 0;
+    let galleryItems = [];
+
+    // Captura todos os itens da galeria ao carregar a página
+    document.addEventListener("DOMContentLoaded", () => {
+      galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+    });
+
     function openLightbox(item) {
       const img = item.querySelector('img');
-      if (!img) return; // sem foto ainda
+      if (!img) return;
+      
+      // MELHORIA: Descobre qual é a imagem atual clicada para permitir avançar/voltar
+      currentImageIndex = galleryItems.indexOf(item);
+      
       document.getElementById('lightbox-img').src = img.src;
       document.getElementById('lightbox').classList.add('open');
     }
+
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('open');
     }
+
+    // MELHORIA: Função para avançar e voltar imagem (+1 ou -1)
+    function changeImage(direction, event) {
+      if(event) event.stopPropagation(); // Evita que o clique feche o lightbox
+      
+      currentImageIndex += direction;
+      
+      // Lógica de loop infinito para as imagens
+      if(currentImageIndex >= galleryItems.length) currentImageIndex = 0;
+      if(currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
+      
+      const newImg = galleryItems[currentImageIndex].querySelector('img');
+      document.getElementById('lightbox-img').src = newImg.src;
+    }
+
     document.getElementById('lightbox').addEventListener('click', function (e) {
+      // Fecha o lightbox se clicar no fundo preto (fora da imagem ou setas)
       if (e.target === this) closeLightbox();
     });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // MELHORIA: Adicionado suporte para as setas do teclado (Esquerda / Direita)
+    document.addEventListener('keydown', e => { 
+      if (e.key === 'Escape') closeLightbox(); 
+      if (e.key === 'ArrowRight' && document.getElementById('lightbox').classList.contains('open')) changeImage(1);
+      if (e.key === 'ArrowLeft' && document.getElementById('lightbox').classList.contains('open')) changeImage(-1);
+    });
+
+    // ── MÚSICA DE FUNDO ──
+    // MELHORIA: Função para controlar a música flutuante
+    function toggleMusic() {
+      const audio = document.getElementById('bg-music');
+      const btn = document.getElementById('music-btn');
+      
+      if (audio.paused) {
+        audio.play();
+        btn.innerHTML = '⏸️'; // Troca o ícone para pause
+        btn.title = "Pausar música";
+      } else {
+        audio.pause();
+        btn.innerHTML = '🎵'; // Troca o ícone para play
+        btn.title = "Tocar música";
+      }
+    }
   </script>
 
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
-
 </html>
